@@ -5,7 +5,7 @@ export default class HexMap extends React.Component {
   canvasY = window.screen.height - 500;
   canvasX = window.screen.width - 880;
   hexagonSize = 20;
-  numHexesY = 43;
+  numHexesY = 40;
   numHexesX = 80;
   gridWidth = this.numHexesX * this.hexagonSize;
   gridHeight = this.numHexesY * this.hexagonSize;
@@ -16,7 +16,8 @@ export default class HexMap extends React.Component {
     p5.createCanvas(this.canvasX, this.canvasY).parent(parentRef);
   };
 
-  drawHexagonPointyTop = (p5, cX, cY, r) => {
+  drawHexagonPointyTop = (p5, cX, cY, r, color) => {
+    p5.fill(color);
     p5.beginShape();
 
     for (let i = 0; i < 6; i++) {
@@ -37,7 +38,8 @@ export default class HexMap extends React.Component {
           p5,
           x + offsetX + this.hexagonSize * (count % 2 === 0) * 0.5,
           y,
-          this.hexagonSize / 2
+          this.hexagonSize / 2,
+          'black'
         );
       }
       count++;
@@ -45,8 +47,8 @@ export default class HexMap extends React.Component {
   };
 
   draw = (p5) => {
-    p5.background(0);
-    p5.stroke(255);
+    p5.background('black');
+    p5.stroke('white');
     p5.noFill();
 
     this.makeGridPointyTop(p5);
